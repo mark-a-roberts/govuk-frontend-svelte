@@ -1,17 +1,17 @@
 <script lang="ts">
 	import {htmlOrText} from '$lib/helpers/htmlOrText.svelte';
-	import govukAttributes  from '$lib/helpers/attributes.svelte';
+	import {govukAttributes} from '$lib/helpers/attributes.js';
 
-	let { classes, attributes, id, open, caller, html, text, summaryHtml, summaryText}: {
+	let { classes, attributes, id, open, html, text, summaryHtml, summaryText, caller}: {
 		classes?: string[],
 		attributes?:any,
 		id?: string,
 		open?: boolean,
-		caller?: ()=>(),
 		html?: string,
 		text?: string,
 		summaryHtml?: string,
-		summaryText?: string
+		summaryText?: string,
+		caller?: () => any
 	} = $props();
 
 </script>
