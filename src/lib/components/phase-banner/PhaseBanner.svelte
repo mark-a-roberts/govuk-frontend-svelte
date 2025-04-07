@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { htmlOrText } from '$lib/GDS/helpers/htmlOrText.svelte';
+	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
 
 	import Tag from '../tag/Tag.svelte';
 	let {

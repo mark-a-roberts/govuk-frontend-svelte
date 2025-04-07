@@ -1,6 +1,6 @@
 <script lang="ts">
-	import {htmlOrText} from '$lib/GDS/helpers/htmlOrText.svelte';
-	import govukAttributes  from '$lib/GDS/helpers/attributes.svelte';
+	import {htmlOrText} from '$lib/helpers/htmlOrText.svelte';
+	import govukAttributes  from '$lib/helpers/attributes.svelte';
 
 	let { classes, attributes, id, open, caller, html, text, summaryHtml, summaryText}: {
 		classes?: string[],
