@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
-	import { govukAttributes} from "$lib/helpers/attributes.js";
+	import { govukAttributes } from '$lib/helpers/attributes.js';
 
-	let {
-		classes,
-		attributes,
-		collapseOnMobile,
-		labelText,
-		items
-	}: {
+	interface IItem {
+		href?: string;
+	}
+
+	interface IBreadcrumbs {
 		classes?: string | string[];
 		attributes?: any;
 		collapseOnMobile?: boolean;
 		labelText?: string;
-		items?: Item[];
-	} = $props();
+		items?: IItem[];
+	}
+
+	let { classes, attributes, collapseOnMobile, labelText, items }: IBreadcrumbs = $props();
 </script>
 
 /// Set classes for this component
@@ -32,7 +32,11 @@
 			{#each items as item}
 				{#if item?.href}
 					<li class="govuk-breadcrumbs__list-item">
-						<a class="govuk-breadcrumbs__link" href={item.href} {...govukAttributes(item.attributes)}>
+						<a
+							class="govuk-breadcrumbs__link"
+							href={item.href}
+							{...govukAttributes(item.attributes)}
+						>
 							{@render htmlOrText(item, -1)}
 						</a>
 					</li>

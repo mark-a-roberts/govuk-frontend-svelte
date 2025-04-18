@@ -3,20 +3,7 @@
 	import { govukAttributes } from '$lib/helpers/attributes.js';
 	import { govukI18nAttributes } from '../../helpers/i18nAttributes.js';
 
-	let {
-		classes,
-		attributes,
-		id,
-		rememberExpanded,
-		items,
-		headingLevel,
-		hideAllSectionsText,
-		hideSectionText,
-		hideSectionAriaLabelText,
-		showAllSectionsText,
-		showSectionText,
-		showSectionAriaLabelText
-	}: {
+	interface IAccordion {
 		classes?: string | string[];
 		attributes?: any;
 		rememberExpanded?: string;
@@ -31,7 +18,22 @@
 		showAllSectionsText?: string;
 		showSectionText?: string;
 		showSectionAriaLabelText?: string;
-	} = $props();
+	}
+
+	let {
+		classes,
+		attributes,
+		id,
+		rememberExpanded,
+		items,
+		headingLevel,
+		hideAllSectionsText,
+		hideSectionText,
+		hideSectionAriaLabelText,
+		showAllSectionsText,
+		showSectionText,
+		showSectionAriaLabelText
+	}: IAccordion = $props();
 
 	interface IParam {
 		[key: string]: any;

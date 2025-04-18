@@ -2,6 +2,22 @@
 	import { govukAttributes } from '$lib/helpers/attributes.js';
 	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
 
+	interface IButton {
+		id?: string;
+		name?: string;
+		classes?: string | string[];
+		attributes?: any;
+		href?: string;
+		html?: string;
+		text?: string;
+		value?: string;
+		element?: string;
+		isStartButton?: boolean;
+		disabled?: boolean;
+		preventDoubleClick?: boolean;
+		type?: string;
+	}
+
 	let {
 		id,
 		name,
@@ -16,21 +32,7 @@
 		isStartButton,
 		disabled,
 		preventDoubleClick
-	}: {
-		id?: string;
-		name?: string;
-		classes?: string | string[];
-		attributes?: any;
-		href?: string;
-		html?: string;
-		text?: string;
-		value?: string;
-		element?: string;
-		isStartButton?: boolean;
-		disabled?: boolean;
-		preventDoubleClick?: boolean;
-		type?: string;
-	} = $props();
+	}: IButton = $props();
 
 	// Define common attributes that we can use across all element types -->
 	const commonAttributes = {
@@ -46,7 +48,7 @@
 		'data-prevent-double-click': preventDoubleClick
 	};
 
-	const myElement = element ?? (href ? 'a' : 'button')
+	const myElement = element ?? (href ? 'a' : 'button');
 </script>
 
 <!--

@@ -1,5 +1,21 @@
 <script lang="ts">
 	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+
+	interface IHeader {
+		homepageUrl?: string;
+		classes?: IClass;
+		containerClasses?: string | string[];
+		attributes?: IAttributes;
+		productName?: string;
+		serviceName?: string;
+		serviceUrl?: string;
+		menuButtonText?: string;
+		menuButtonLabel?: string;
+		navigation?: any;
+		navigationLabel?: string;
+		navigationClasses?: string | string[];
+	}
 
 	let {
 		homepageUrl = '/',
@@ -14,23 +30,14 @@
 		navigationLabel,
 		navigationClasses,
 		attributes
-	}: {
-		homepageUrl?: string;
-		classes?: string | string[];
-		containerClasses?: string | string[];
-		attributes?: any;
-		productName?: string;
-		serviceName?: string;
-		serviceUrl?: string;
-		menuButtonText?: string;
-		menuButtonLabel?: string;
-		navigation?: any;
-		navigationLabel?: string;
-		navigationClasses?: string | string[];
-	} = $props();
+	}: IHeader = $props();
 </script>
 
-<header class={['govuk-header', classes]} data-module="govuk-header" {...attributes}>
+<header
+	class={['govuk-header', classes]}
+	data-module="govuk-header"
+	{...govukAttributes(attributes)}
+>
 	<div class={['govuk-header__container', containerClasses]}>
 		<div class="govuk-header__logo">
 			<a href={homepageUrl} class="govuk-header__link govuk-header__link--homepage">

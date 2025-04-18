@@ -1,18 +1,19 @@
 <script lang="ts">
 	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
-
 	import Tag from '../tag/Tag.svelte';
-	let {
-		classes,
-		attributes,
-		tag,
-		html,
-		text
-	}: { classes?: string | string[]; attributes: any; tag: any; html?: string; text?: string } =
-		$props();
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+
+	interface IPhaseBanner {
+		classes?: IClass;
+		attributes: IAttributes;
+		tag: any;
+		html?: string;
+		text?: string;
+	}
+	let { classes, attributes, tag, html, text }: IPhaseBanner = $props();
 </script>
 
-<div class={['govuk-phase-banner', classes]} {...attributes}>
+<div class={['govuk-phase-banner', classes]} {...govukAttributes(attributes)}>
 	<p class="govuk-phase-banner__content">
 		{#if tag}
 			<Tag

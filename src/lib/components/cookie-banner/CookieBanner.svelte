@@ -15,19 +15,15 @@
 		actions?: any[];
 	}
 
-	let {
-		classes,
-		attributes,
-		hidden,
-		ariaLabel,
-		messages
-	}: {
+	interface ICookieBanner {
 		classes?: string | string[];
 		attributes?: any;
 		hidden?: boolean;
 		ariaLabel?: string;
 		messages: IMessage[];
-	} = $props();
+	}
+
+	let { classes, attributes, hidden, ariaLabel, messages }: ICookieBanner = $props();
 </script>
 
 <div

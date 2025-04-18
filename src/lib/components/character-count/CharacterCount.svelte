@@ -1,6 +1,8 @@
 <script lang="ts">
     import { govukAttributes } from "$lib/helpers/attributes.js";
     import {govukI18nAttributes } from "$lib/helpers/i18nAttributes.js";
+    import {TextArea, type ITextArea} from "$lib/components/textarea/TextArea.svelte";
+    import {Hint} from "$lib/components/hint/Hint.svelte";
     import { render } from "@testing-library/svelte";
 
     type IClass = string | string[];
@@ -34,8 +36,6 @@
       value
     }: ICharCount = $props()
 </script>
-{% from "../textarea/macro.njk" import govukTextarea %}
-{% from "../hint/macro.njk" import govukHint %}
 
 <!--
   If the limit is set in JavaScript, we won't be able to interpolate the message
@@ -122,31 +122,25 @@
         {% set attributesHtml = attributesHtml + " " + name | escape + '="' + value | escape + '"' %}
         {% endfor -%}
 
-        {{ govukTextarea({
-  id: id,
-  name: name,
-  describedBy: id + '-info',
-  rows: rows,
-  spellcheck: spellcheck,
-  value: value,
-  formGroup: {
+        <TextArea {id} {name} describedBy={id + '-info'} {rows} {spellcheck} {value}
+                  formgroup={{
   classes: 'govuk-character-count' + (' ' + formGroup.classes if formGroup.classes),
   attributes: attributesHtml,
   beforeInput: formGroup.beforeInput,
   afterInput: {
   html: countMessageHtml
 }
-},
-  classes: [ 'govuk-js-character-count', classes ],
-  label: {
+                  },
+  classes= [ 'govuk-js-character-count', classes ]
+  label= { {
   html: label.html,
   text: label.text,
   classes: label.classes,
   isPageHeading: label.isPageHeading,
   attributes: label.attributes,
   for: id
-},
-  hint: hint,
-  errorMessage: errorMessage,
-  attributes: attributes
-}) | trim }}
+}}
+  {hint},
+  {errorMessage},
+  {attributes}
+/>

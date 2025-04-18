@@ -1,15 +1,7 @@
 <script lang="ts">
 	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
 
-	let {
-		classes,
-		contentLicence,
-		containerClasses = 'govuk-width-container',
-		meta,
-		copyright,
-		navigation,
-		attributes
-	}: {
+	interface IFooter {
 		classes?: string | string[];
 		attributes?: any;
 		navigation?: any;
@@ -27,7 +19,17 @@
 				href: string;
 			}[];
 		};
-	} = $props();
+	}
+
+	let {
+		classes,
+		contentLicence,
+		containerClasses = 'govuk-width-container',
+		meta,
+		copyright,
+		navigation,
+		attributes
+	}: IFooter = $props();
 </script>
 
 <footer class={['govuk-footer', classes]} {...attributes}>
