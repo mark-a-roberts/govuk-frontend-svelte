@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { govukAttributes, type IKSType } from '$lib/helpers/attributes.js';
-	export interface IErrorMessage {
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+	import type { IHtmlOrText } from "$lib/helpers/htmlOrText.svelte";
+	export interface IErrorMessage extends IHtmlOrText {
 		id?: string;
-		classes?: string | string[];
-		attributes?: IKSType;
-		html?: string;
-		text?: string;
+		classes?: IClass;
+		attributes?: IAttributes;
 		visuallyHiddenText?: string;
 	}
 	let {

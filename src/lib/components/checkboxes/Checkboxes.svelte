@@ -1,5 +1,5 @@
 <script module lang="ts">
-  import { govukAttributes, type IAttributes } from '$lib/helpers/attributes.js';
+  import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
   import {ErrorMessage, type IErrorMessage} from "$lib/components/error-message/ErrorMessage.svelte";
   import { Fieldset, type IFieldset} from  "$lib/components/fieldset/Fieldset.svelte";
 import {Hint, type IHint} from "$lib/components/hint/Hint.svelte";
@@ -9,7 +9,7 @@ import {Hint, type IHint} from "$lib/components/hint/Hint.svelte";
       id?: string,
       name?: string,
       attributes?: IAttributes,
-      classes?: string | string[],
+      classes?: IClass,
       idPrefix?: string,
       fieldset?: IFieldset,
       errorMessage?: IErrorMessage,
@@ -95,7 +95,7 @@ The first id should not have a number suffix so it's easy to link to from the er
   id={hintId} classes={hint.classes}
   attributes={hint.attributes}
   html={hint.html}
-  text={hint.text}>
+  text={hint.text}/>
   {/if}
   {#if errorMessage}
   {@const errorId = idPrefix + '-error' }
@@ -105,7 +105,7 @@ The first id should not have a number suffix so it's easy to link to from the er
   html={errorMessage.html}
   text={errorMessage.text}
   visuallyHiddenText={errorMessage.visuallyHiddenText}
-  >
+  />
   {/if}
   <div class={["govuk-checkboxes", classes]}
   {...govukAttributes(attributes) data-module="govuk-checkboxes">

@@ -1,9 +1,15 @@
-<script lang="ts">
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+<script module lang="ts">
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import type { IAttributes, IClass } from '$lib/helpers/attributes.js';
 
-	interface IFooter {
-		classes?: string | string[];
+	interface IItem extends IHtmlOrText {
 		attributes?: any;
+		href: string;
+	}
+
+	export interface IFooter {
+		classes?: IClass;
+		attributes?: IAttributes;
 		navigation?: any;
 		containerClasses: string | string[];
 		copyright?: { text?: string; html?: string };
@@ -12,15 +18,12 @@
 			visuallyHiddenTitle?: string;
 			text?: string;
 			html?: string;
-			items?: {
-				text?: string;
-				html?: string;
-				attributes?: any;
-				href: string;
-			}[];
+			items?: IItem[];
 		};
 	}
+</script>
 
+<script lang="ts">
 	let {
 		classes,
 		contentLicence,

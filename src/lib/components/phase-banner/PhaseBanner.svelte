@@ -1,15 +1,16 @@
-<script lang="ts">
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+<script module lang="ts">
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
 	import Tag from '../tag/Tag.svelte';
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
 
-	interface IPhaseBanner {
+	export interface IPhaseBanner extends IHtmlOrText {
 		classes?: IClass;
 		attributes: IAttributes;
 		tag: any;
-		html?: string;
-		text?: string;
 	}
+</script>
+
+<script lang="ts">
 	let { classes, attributes, tag, html, text }: IPhaseBanner = $props();
 </script>
 

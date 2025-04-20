@@ -1,23 +1,21 @@
 <script lang="ts">
-	import { govukAttributes } from '$lib/helpers/attributes.js';
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
 	import Button from '$lib/components/button/Button.svelte';
 
-	interface IMessage {
-		classes: string | string[];
+	interface IMessage extends IHtmlOrText{
+		classes?: IClass;
+		attributes?: IAttributes;
 		role?: string;
-		attributes?: any;
 		hidden?: boolean;
-		html?: string;
-		text?: string;
 		headingHtml?: string;
 		headingText?: string;
 		actions?: any[];
 	}
 
-	interface ICookieBanner {
-		classes?: string | string[];
-		attributes?: any;
+	export interface ICookieBanner {
+		classes?: IClass;
+		attributes?: IAttributes;
 		hidden?: boolean;
 		ariaLabel?: string;
 		messages: IMessage[];

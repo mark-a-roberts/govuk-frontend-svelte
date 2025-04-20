@@ -1,15 +1,16 @@
-<script lang="ts">
+<script module lang="ts">
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
-	export interface ILabel {
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	export interface ILabel extends IHtmlOrText {
 		id?: string;
-		attributes?: IAttributes;
 		classes?: IClass;
-		html?: string;
-		text?: string;
+		attributes?: IAttributes;
 		isPageHeading: boolean;
 		aFor?: string;
 	}
+</script>
+
+<script lang="ts">
 	let { id, classes, attributes, html, text, isPageHeading, aFor }: ILabel = $props();
 </script>
 

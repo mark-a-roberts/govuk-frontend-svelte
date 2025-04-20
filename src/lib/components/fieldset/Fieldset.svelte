@@ -1,13 +1,18 @@
 <script module lang="ts">
-	import { govukAttributes, type IAttributes, IClass } from '$lib/helpers/attributes.js';
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
+
+	interface ILegend extends IHtmlOrText {
+		isPageHeading: boolean;
+		classes?: IClass;
+	}
 
 	export interface IFieldset {
 		classes?: IClass;
 		attributes?: IAttributes;
 		role?: string;
 		describedBy?: string;
-		legend?: { isPageHeading: boolean; html?: string; text?: string; classes?: IClass };
+		legend?: ILegend;
 		html: string;
 		caller: () => string;
 	}
@@ -23,7 +28,7 @@
 	aria-describedby={describedBy}
 	{...govukAttributes(attributes)}
 >
-	{#if legend.html || legend.text}
+	{#if legend?.html || legend?.text}
 		<legend class={['govuk-fieldset__legend', legend.classes]}>
 			{#if legend.isPageHeading}
 				<h1 class="govuk-fieldset__heading">

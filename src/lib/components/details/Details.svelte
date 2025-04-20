@@ -1,30 +1,21 @@
-<script lang="ts">
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+<script module lang="ts">
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
 
-	interface IDetails {
+	export interface IDetails extends IHtmlOrText{
 		classes?: IClass;
 		attributes?: IAttributes;
 		id?: string;
 		open?: boolean;
-		html?: string;
-		text?: string;
 		summaryHtml?: string;
 		summaryText?: string;
 		caller?: () => any;
 	}
+</script>
 
-	let {
-		classes,
-		attributes,
-		id,
-		open,
-		html,
-		text,
-		summaryHtml,
-		summaryText,
-		caller
-	}: IDetails = $props();
+<script lang="ts">
+	let { classes, attributes, id, open, html, text, summaryHtml, summaryText, caller }: IDetails =
+		$props();
 </script>
 
 <details {id} class={['govuk-details', classes]} {...govukAttributes(attributes)} {open}>

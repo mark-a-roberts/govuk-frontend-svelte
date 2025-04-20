@@ -1,19 +1,18 @@
-<script lang="ts">
-	import { govukAttributes, type IAttributes } from '$lib/helpers/attributes.js';
+<script module lang="ts">
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
 	import { Hint, type IHint } from '$lib/components/hint/Hint.svelte';
 	import { Label, type ILabel } from '$lib/components/label/Label.svelte';
 	import {
 		ErrorMessage,
 		type IErrorMessage
 	} from '$lib/components/error-message/ErrorMessage.svelte';
+	import { htmlOrText, type IHtmlOrText } from "$lib/helpers/htmlOrText.svelte";
 
-	export interface ITextArea {
+	export interface ITextArea extends IHtmlOrText {
 		id?: string;
 		name?: string;
-		classes?: string | string[];
+		classes?: IClass;
 		attributes?: IAttributes;
-		html?: string;
-		text?: string;
 		hint: IHint;
 		label: ILabel;
 		formGroup: IFormGroup;
@@ -23,6 +22,9 @@
 		describedBy?: string;
 		rows?: number | string;
 	}
+</script>
+
+<script lang="ts">
 	let {
 		id,
 		name,

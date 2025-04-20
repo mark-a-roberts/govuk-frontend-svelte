@@ -1,22 +1,24 @@
-<script lang="ts">
+<script module lang="ts">
 	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
 
-	interface IHeader {
+	export interface IHeader {
 		homepageUrl?: string;
 		classes?: IClass;
-		containerClasses?: string | string[];
+		containerClasses?: IClass;
 		attributes?: IAttributes;
 		productName?: string;
 		serviceName?: string;
 		serviceUrl?: string;
 		menuButtonText?: string;
 		menuButtonLabel?: string;
-		navigation?: any;
+		navigation?: any[];
 		navigationLabel?: string;
 		navigationClasses?: string | string[];
 	}
+</script>
 
+<script lang="ts">
 	let {
 		homepageUrl = '/',
 		classes,

@@ -1,17 +1,9 @@
 <script lang="ts">
-    import { govukAttributes } from "$lib/helpers/attributes.js";
+        import { govukAttributes, type IKeyString } from "$lib/helpers/attributes.js";
     import {govukI18nAttributes } from "$lib/helpers/i18nAttributes.js";
     import {TextArea, type ITextArea} from "$lib/components/textarea/TextArea.svelte";
-    import {Hint} from "$lib/components/hint/Hint.svelte";
-    import { render } from "@testing-library/svelte";
-
-    type IClass = string | string[];
-
-    interface ILabel {
-      classes: IClass,
-      html?: string,
-      text?: string,
-    }
+    import {Label, type ILabel } from "$lib/components/label/Label.svelte";
+    import {Hint, type IHint } from "$lib/components/hint/Hint.svelte";
 
     interface ICharCount {
       id?: string,
@@ -20,7 +12,7 @@
         maxlength?: number,
         textareaDescriptionText?: string, textareaDescriptionLength?: number,
         label: ILabel,
-        formGroup: KeyValue,
+        formGroup: IKeyString,
         countMessage: {
             classes: string | string[]
         },

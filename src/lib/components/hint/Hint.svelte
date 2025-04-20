@@ -1,13 +1,11 @@
 <script module lang="ts">
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+	import { htmlOrText, type IHtmlOrText } from "$lib/helpers/htmlOrText.svelte";
 
-	export interface IHint {
+	export interface IHint extends IHtmlOrText{
 		id?: string;
 		classes?: IClass;
 		attributes?: IAttributes;
-		html?: string;
-		text?: string;
 	}
 </script>
 

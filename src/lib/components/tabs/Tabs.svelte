@@ -1,15 +1,17 @@
-<script lang="ts">
+<script module lang="ts">
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
-	interface ITabs {
+	import type { IHtmlOrText } from "$lib/helpers/htmlOrText.svelte";
+	interface ITabs extends IHtmlOrText {
 		id?: string;
 		name?: string;
 		classes?: IClass;
 		attributes?: IAttributes;
-		html?: string;
-		text?: string;
 		idPrefix?: string;
 		items?: { panel?: any }[];
 	}
+</script>
+
+<script lang="ts">
 	let { id, name, classes, attributes, html, text, idPrefix, items }: ITabs = $props();
 </script>
 

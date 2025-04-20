@@ -1,8 +1,11 @@
-<script lang="ts">
-	interface ISkipLink {
+<script module lang="ts">
+	export interface ISkipLink {
 		text?: string;
 		href?: string;
 	}
+</script>
+
+<script>
 	let { text = 'Skip to main content', href = '#' }: ISkipLink = $props();
 </script>
 

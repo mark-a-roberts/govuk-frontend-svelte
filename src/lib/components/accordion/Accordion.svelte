@@ -1,11 +1,16 @@
 <script lang="ts">
-	import { htmlOrText, type ITextOrHtml } from '$lib/helpers/htmlOrText.svelte';
-	import { govukAttributes } from '$lib/helpers/attributes.js';
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import {
+		govukAttributes,
+		type IKeyString,
+		type IAttributes,
+		type IClass
+	} from '$lib/helpers/attributes.js';
 	import { govukI18nAttributes } from '../../helpers/i18nAttributes.js';
 
 	interface IAccordion {
-		classes?: string | string[];
-		attributes?: any;
+		classes?: IClass;
+		attributes?: IAttributes;
 		rememberExpanded?: string;
 		id?: string | number;
 		text: string;
@@ -35,21 +40,17 @@
 		showSectionAriaLabelText
 	}: IAccordion = $props();
 
-	interface IParam {
-		[key: string]: any;
-	}
-
 	interface IAccordionItem {
 		expanded: boolean;
-		heading: ITextOrHtml;
-		summary?: ITextOrHtml;
-		content: ITextOrHtml;
+		heading: IHtmlOrText;
+		summary?: IHtmlOrText;
+		content?: IHtmlOrText;
 	}
 
 	type TIndex = string | number;
 </script>
 
-{#snippet _accordionItem(params: IParam, item: IAccordionItem, index: TIndex)}
+{#snippet _accordionItem(params: IKeyString, item: IAccordionItem, index: TIndex)}
 	{@const headingLevel = params.headingLevel ?? 2}
 	<div class={['govuk-accordion__section', item.expanded && 'govuk-accordion__section--expanded']}>
 		<div class="govuk-accordion__section-header">
@@ -65,9 +66,9 @@
 			{/if}
 		</div>
 		<div id="{params.id}-content-{index}" class="govuk-accordion__section-content">
-			{#if item.content.html}
+			{#if item.content?.html}
 				{@render htmlOrText({ html: item.content.html }, 6)}
-			{:else if item.content.text}
+			{:else if item.content?.text}
 				<p class="govuk-body">
 					{item.content.text.trim()}
 				</p>

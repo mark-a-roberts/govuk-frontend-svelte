@@ -1,14 +1,16 @@
-<script lang="ts">
-	import { htmlOrText} from "$lib/helpers/htmlOrText.svelte";
+<script module lang="ts">
 	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
-	interface IWarning {
+	import type { IHtmlOrText } from "$lib/helpers/htmlOrText.svelte";
+	export interface IWarning extends IHtmlOrText {
 		id?: string;
 		classes?: IClass;
 		attributes?: IAttributes;
-		html?: string;
-		text?: string;
 		iconFallbackText?: string;
 	}
+</script>
+
+<script lang="ts">
+	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
 	let { id, classes, attributes, html, text, iconFallbackText }: IWarning = $props();
 </script>
 
@@ -16,6 +18,6 @@
 	<span class="govuk-warning-text__icon" aria-hidden="true">!</span>
 	<strong class="govuk-warning-text__text">
 		<span class="govuk-visually-hidden">{iconFallbackText ?? 'Warning'}</span>
-		{@render htmlOrText({ html, text })}
+		{@render htmlOrText({ html, text },-1)}
 	</strong>
 </div>

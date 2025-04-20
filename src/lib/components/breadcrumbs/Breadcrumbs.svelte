@@ -1,19 +1,22 @@
-<script lang="ts">
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
-	import { govukAttributes } from '$lib/helpers/attributes.js';
+<script module lang="ts">
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
 
-	interface IItem {
+	interface IItem extends IHtmlOrText {
 		href?: string;
+		attributes?: IAttributes;
 	}
 
-	interface IBreadcrumbs {
-		classes?: string | string[];
-		attributes?: any;
+	export interface IBreadcrumbs {
+		classes?: IClass;
+		attributes?: IAttributes;
 		collapseOnMobile?: boolean;
 		labelText?: string;
 		items?: IItem[];
 	}
+</script>
 
+<script lang="ts">
 	let { classes, attributes, collapseOnMobile, labelText, items }: IBreadcrumbs = $props();
 </script>
 

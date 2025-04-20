@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { govukAttributes } from '$lib/helpers/attributes.js';
-	import { htmlOrText } from '$lib/helpers/htmlOrText.svelte';
+	import { govukAttributes, type IAttributes, type IClass } from '$lib/helpers/attributes.js';
+	import { htmlOrText, type IHtmlOrText } from '$lib/helpers/htmlOrText.svelte';
 
-	interface IButton {
+	interface IButton extends  IHtmlOrText {
 		id?: string;
 		name?: string;
-		classes?: string | string[];
-		attributes?: any;
+		classes?: IClass;
+		attributes?: IAttributes;
 		href?: string;
-		html?: string;
-		text?: string;
 		value?: string;
 		element?: string;
 		isStartButton?: boolean;
